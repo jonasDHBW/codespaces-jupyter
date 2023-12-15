@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 url = 'https://chat.openai.com/auth/login'
 
 # Initialize the Chrome driver
-driver = webdriver.Edge()
+driver = webdriver.Chrome()
 
 try:
     # Maximize the browser window
@@ -18,7 +18,7 @@ try:
 
     # Wait for the element to be clickable
     wait = WebDriverWait(driver, 10)
-    element = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="__next"]/div[1]/div[2]/div[1]/div/div/button[1]')))
+    element = wait.until(EC.element_to_be_clickable((By.XPATH, 'your_xpath_here')))
 
     # Perform the click action using ActionChains (optional)
     # actions = ActionChains(driver)
@@ -30,8 +30,6 @@ try:
 except Exception as e:
     print(f"An error occurred: {e}")
 
-finally:
-    # Close the browser window
-    driver.quit()
-
-
+# Do not close the browser in the finally block to keep the tab open
+# finally:
+#     driver.quit()

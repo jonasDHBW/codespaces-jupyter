@@ -1,12 +1,14 @@
 
-import pyautogui
-import webbrowser
-
-# url = 'https://chat.openai.com/auth/login'
-# chrome_path = r'C:\ProgramData\Microsoft\Windows\Start Menu\Programs'
-# webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
-# webbrowser.get('chrome').open_new(url)
+from selenium import webdriver
 
 url = 'https://chat.openai.com/auth/login'
+driver = webdriver.Edge()
+driver.get(url)
 
-webbrowser.open(url)
+# perfomrInPowerShell
+
+# C:/Python312/python.exe "c:/Users/jpl/VS Code for Git/codespaces-jupyter/seleniumTest.py"
+
+
+
+
