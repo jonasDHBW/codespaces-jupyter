@@ -16,15 +16,14 @@ try:
     # Navigate to the URL
     driver.get(url)
 
-    # Wait for the element to be clickable
+    # login Button
     wait = WebDriverWait(driver, 10)
-    element = wait.until(EC.element_to_be_clickable((By.XPATH, 'your_xpath_here')))
-
-    # Perform the click action using ActionChains (optional)
-    # actions = ActionChains(driver)
-    # actions.click(element).perform()
-
-    # Click the element
+    element = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="__next"]/div[1]/div[2]/div[1]/div/div/button[1]')))
+    element.click()
+    
+    # Email 
+    wait = WebDriverWait(driver, 10)
+    element = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="__next"]/div[1]/div[2]/div[1]/div/div/button[1]')))
     element.click()
 
 except Exception as e:
