@@ -1,4 +1,4 @@
-            
+# idea_manager.py
 import os
 
 class IdeaManager:
@@ -7,10 +7,12 @@ class IdeaManager:
         self.ideas = self.load_ideas()
 
     def load_ideas(self):
-        if os.path.exists(self.file_path):
+        try:
             with open(self.file_path, 'r') as file:
                 return [line.strip() for line in file.readlines()]
-        return []
+        except FileNotFoundError:
+            print(f"File not found: {self.file_path}")
+            return []
 
     def save_ideas(self):
         with open(self.file_path, 'w') as file:

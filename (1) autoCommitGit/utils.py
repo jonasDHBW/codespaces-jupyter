@@ -1,29 +1,30 @@
-# selenium_utils.py
+# utils.py
+import pyautogui
+import webbrowser
+import time
+
+# selenium
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
-import pyautogui
-import webbrowser
 
-from idea import IdeaManager
+# pyautogui
+from idea_manager import IdeaManager
 
-# selenium
-def initialize_driver():
-    driver = webdriver.Chrome()
-    driver.maximize_window()
-    return driver
+# def initialize_driver():
+#     driver = webdriver.Chrome()
+#     driver.maximize_window()
+#     return driver
 
-def navigate_to_url(driver, url):
-    driver.get(url)
+# def navigate_to_url(driver, url):
+#     driver.get(url)
 
-def click_element(driver, xpath):
-    wait = WebDriverWait(driver, 10)
-    element = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-    element.click()
+# def click_element(driver, xpath):
+#     wait = WebDriverWait(driver, 10)
+#     element = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+#     element.click()
 
-#pyautogiu
 def open_browser(url):
     webbrowser.open(url)
 
@@ -39,6 +40,7 @@ def press_key(key):
     pyautogui.press(key)
 
 def perform_login():
+    time.sleep(2)
     click_at_position(1400, 550)
     time.sleep(2)
     click_at_position(926, 550)
@@ -60,7 +62,7 @@ def ask_chat_gpt(idea_manager):
 
     # Verwende die erste Idee, wenn vorhanden
     if ideas:
-        pyautogui.typewrite(f"write a code for {ideas[0]}")
+        pyautogui.typewrite(f"write a code for {ideas[0]} in python")
         press_key("enter")
     else:
         print("No ideas available.")
