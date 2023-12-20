@@ -1,34 +1,27 @@
+
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from selenium_stealth import stealth
 
-url = 'https://chat.openai.com/auth/login'
+options = webdriver.ChromeOptions()
+options.add_argument("start-maximized")
+options.add_argument("--headless")
+options.add_experimental_option("excludeSwitches", ["enable-automation"])
+options.add_experimental_option('useAutomationExtension', False)
+driver = webdriver.Chrome(options=options, executable_path=r"C:\path\to\chromedriver.exe")
 
-# Initialize the Chrome driver
-driver = webdriver.Chrome()
+stealth(driver,
+        languages=["en-US", "en"],
+        vendor="Google Inc.",
+        platform="Win32",
+        webgl_vendor="Intel Inc.",
+        renderer="Intel Iris OpenGL Engine",
+        fix_hairline=True,
+        )
 
-try:
-    # Maximize the browser window
-    driver.maximize_window()
+driver.get('https://chat.openai.com/auth/login')
 
-    # Navigate to the URL
-    driver.get(url)
 
-    # login Button
-    wait = WebDriverWait(driver, 10)
-    element = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="__next"]/div[1]/div[2]/div[1]/div/div/button[1]')))
-    element.click()
-    
-    # Email 
-    wait = WebDriverWait(driver, 10)
-    element = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="__next"]/div[1]/div[2]/div[1]/div/div/button[1]')))
-    element.click()
+# https://pypi.org/project/undetected-chromedriver/
+# https://stackoverflow.com/questions/68289474/selenium-headless-how-to-bypass-cloudflare-detection-using-selenium
 
-except Exception as e:
-    print(f"An error occurred: {e}")
 
-# Do not close the browser in the finally block to keep the tab open
-# finally:
-#     driver.quit()
