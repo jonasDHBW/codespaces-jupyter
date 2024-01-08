@@ -5,4 +5,4 @@ Implement a basic chatbot with predefined responses
 Create a program to generate random passwords
 Build a simple weather app using an API
 Write a script to organize files in a directory
-Implement a basic rock-paper-scissors game
+Implement a basic rock-paper-scissors games
