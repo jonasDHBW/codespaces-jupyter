@@ -1,79 +1,72 @@
-# utils.py
-import pyautogui
-import webbrowser
-import time
-
-# selenium
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
-url = 'https://chat.openai.com/auth/login'  # Replace with the actual URL
-button_xpath = '/html/body/div[1]/div[1]/div[2]/div[1]/div/div/button[1]'  # Replace with the actual XPath of the button
-
-options = webdriver.ChromeOptions()
-
-options.add_experimental_option("detach", True)
-
-def initialize_driver():
-    driver = webdriver.Chrome(options=options)
-    driver.maximize_window()
-    return driver
-
-def navigate_to_url(driver, url):
-    time.sleep(3)
-    driver.get(url)
-
-# def click_button_by_xpath(driver, button_xpath):
-#     button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, button_xpath)))
-#     button.click()
-    
-def open_browser(url):
-    webbrowser.open(url)
-
-def click_at_position(x, y, duration=0.5):
-    pyautogui.moveTo(x, y, duration=duration)
-    pyautogui.click()
-
-def type_with_shortcut(text, shortcut):
-    pyautogui.typewrite(text)
-    pyautogui.hotkey(*shortcut)
-    
-def press_key(key):
-    pyautogui.press(key)
-    
-def perform_login():
-    time.sleep(2)
-    click_at_position(1400, 550)
-    time.sleep(2)
-    click_at_position(926, 550)
-
-    type_with_shortcut("vier.drei1", ["ctrl", "alt", "q"])
-    pyautogui.typewrite("web.de")
-    press_key("enter")
-
-    click_at_position(926, 675, duration=1)
-    pyautogui.typewrite("python.Auto.Commit.2023")
-    press_key("enter")
-    time.sleep(5)
-
-if __name__ == "__main__":
-    driver = initialize_driver()
-    navigate_to_url(driver, url)
-    
-    # Click on the button using its XPath
-    # click_button_by_xpath(driver, button_xpath)
-    
-    # perform_login()
-    time.sleep(2)
-    click_at_position(1400, 550)
-    time.sleep(2)
-    click_at_position(940, 500)
-    # Close the browser window
-
-# perfomrInPowerShell
-
-# C:/Python312/python.exe "c:/Users/jpl/VS Code for Git/codespaces-jupyter/seleniumTest.py"
+for i in range(1, 6):
+    print(str(i) * i)
 
 
+
+# import random
+
+# user_action = input("Enter a choice (rock, paper, scissors); ")
+# possible_actions = ["rock", "paper", "scrissors"]
+# computer_action = random.choice(possible_actions)
+
+# print(f"\nYou chose {user_action}, computer chose {computer_action}.\n")
+
+# if user_action == computer_action:
+#     print("It's a tie!")
+# elif (
+#     (user_action == "rock" and computer_action == "scissors") or
+#     (user_action == "paper" and computer_action == "rock") or
+#     (user_action == "scissors" and computer_action == "paper")
+# ):
+#     print("You win!")
+# else:
+#     print("Computer wins!")
+
+# def And(input1, input2):
+#     # Using if statement for AND operation
+#     if input1 == 1 and input2 == 1:
+#         output = 1
+#     else:
+#         output = 0
+#     return output
+
+# # Example usage
+# input1 = int(input("Enter the first input (0 or 1): "))
+# input2 = int(input("Enter the second input (0 or 1): "))
+
+# if input1 not in [0, 1] or input2 not in [0, 1]:
+#     print("Invalid input. Please enter 0 or 1 for inputs.")
+# else:
+#     result = And(input1, input2)
+#     print(f"The result of the AND gate for inputs {input1} and {input2} is: {result}")
+
+# def OR(input1, input2):
+#     if input1 == 0 and input2 == 0:
+#         output = 0
+#     else:
+#         output = 1
+#     return output
+
+# input1 = int(input("Enter the first input (0 or 1): "))
+# input2 = int(input("Enter the second input (0 or 1): "))
+
+# if input1 not in [0, 1] or input2 not in [0, 1]:
+#     print("Invalid input. Please enter 0 or 1 for inputs.")
+# else:
+#     result = OR(input1, input2)
+#     print(f"The result of the Or gate for inputs {input1} and {input2} is: {result}")
+
+# def Not(input1):
+#     if input1 == 1:
+#             output = 0
+#     if input1 == 2:
+#         output = 1
+#     return output
+
+# input1 = int(input("Enter your input (0 or 1): "))
+
+# if input1 not in [0, 1]:
+#     print("Invalid input. Please enter 0 or 1 for inputs.")
+# else:
+#     result = Not(input1)
+#     print(f"The result of the Not gate for your input {input1} is: {result}")
