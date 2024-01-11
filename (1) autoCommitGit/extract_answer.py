@@ -3,7 +3,9 @@ import pyautogui
 import webbrowser
 import time
 
-from utils import click_right, click_at_position
+from utils import click_right, click_at_position, press_key
+
+xpath = ""
 
 def open_def_tool():
     click_right(1560, 680)
@@ -21,4 +23,8 @@ def search_for_button():
     pyautogui.hotkey('ctrl','A')
     pyautogui.hotkey('Delete')
     pyautogui.doubleClick()
+    
+def xpath():
+    pyautogui.typewrite(xpath)
+    press_key("enter")
     
