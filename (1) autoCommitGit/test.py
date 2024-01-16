@@ -1,8 +1,16 @@
-for i in range(1, 6):
-    print(str(i) * i)
+# list=[1,2,4,4,5,8]
+# print(max(list))
+# print(min(list))
+# print(set(list))
 
 
+thisdic = (
+    "brand": "koeniggsegg",
+    "Model": "Jesko",
+    "year": "2024"
+)
 
+print(thisdic["brand"])
 # import random
 
 # user_action = input("Enter a choice (rock, paper, scissors); ")
