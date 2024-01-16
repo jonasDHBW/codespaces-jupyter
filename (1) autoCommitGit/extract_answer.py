@@ -28,3 +28,7 @@ def xpath():
     pyautogui.typewrite(xpath)
     press_key("enter")
     
+    
+    
+def clickOnCopy():
+    Point(x=720, y=842)
