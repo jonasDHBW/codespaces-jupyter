@@ -1,7 +1,7 @@
 # main_script.py
 # from utils import initialize_driver, navigate_to_url, click_element
 from utils import open_browser, perform_login, ask_chat_gpt
-from extract_answer import open_def_tool, open_search_bar, search_for_button
+from extract_answer import clickOnCopy
 from idea_manager import IdeaManager
 
 if __name__ == "__main__":
@@ -16,9 +16,7 @@ if __name__ == "__main__":
 
     perform_login()
     ask_chat_gpt(im)
-    open_def_tool()
-    open_search_bar()
-    search_for_button()
+    clickOnCopy()
 
 
 # open ai in python 

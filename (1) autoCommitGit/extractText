@@ -1,0 +1,84 @@
+import re
+
+def extract_code(text):
+    # Definieren Sie einen regulären Ausdruck, um Code zu erkennen (z.B. beginnt mit "```" und endet mit "```")
+    code_pattern = r'```([\s\S]*?)```'
+
+    # Finden Sie alle Übereinstimmungen des regulären Ausdrucks im Text
+    code_matches = re.findall(code_pattern, text)
+
+    # Rückgabe der extrahierten Code-Abschnitte
+    return code_matches
+
+if __name__ == "__main__":
+    # Beispieltext mit Code
+    sample_text = """
+    Certainly! Here's a simple console-based to-do list application in Python:
+
+```python
+class TodoList:
+    def __init__(self):
+        self.tasks = []
+
+    def add_task(self, task):
+        self.tasks.append(task)
+        print(f'Task "{task}" added.')
+
+    def remove_task(self, task):
+        if task in self.tasks:
+            self.tasks.remove(task)
+            print(f'Task "{task}" removed.')
+        else:
+            print(f'Task "{task}" not found.')
+
+    def display_tasks(self):
+        if not self.tasks:
+            print('No tasks in the to-do list.')
+        else:
+            print('To-Do List:')
+            for i, task in enumerate(self.tasks, start=1):
+                print(f'{i}. {task}')
+
+def main():
+    todo_list = TodoList()
+
+    while True:
+        print("\n1. Add Task")
+        print("2. Remove Task")
+        print("3. Display Tasks")
+        print("4. Quit")
+
+        choice = input("Enter your choice (1/2/3/4): ")
+
+        if choice == '1':
+            task = input("Enter the task: ")
+            todo_list.add_task(task)
+        elif choice == '2':
+            task = input("Enter the task to remove: ")
+            todo_list.remove_task(task)
+        elif choice == '3':
+            todo_list.display_tasks()
+        elif choice == '4':
+            print("Exiting the to-do list application. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter 1, 2, 3, or 4.")
+
+if __name__ == "__main__":
+    main()
+```
+
+This simple to-do list application allows you to add tasks, remove tasks, display the current tasks, and quit the application. You can run this script, and it will prompt you with a menu to interact with the to-do list.
+    """
+
+    # Extrahieren Sie den Code aus dem Beispieltext
+    extracted_code = extract_code(sample_text)
+
+    # Drucken Sie den extrahierten Code
+    for code_block in extracted_code:
+        print("Extrahierter Code:")
+        print(code_block)
+
+
+
+
