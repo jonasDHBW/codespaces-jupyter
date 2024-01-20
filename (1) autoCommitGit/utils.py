@@ -52,7 +52,7 @@ def ask_chat_gpt(idea_manager):
     else:
         print("No ideas available.")
         
-
-        
-# def copy_the_idea():
-#     l =driver.find_element_by_xpath("//button[text()='Check it Now']")
+    
+def clickOnCopy():
+    time.sleep(20)
+    click_at_position(720, 843)

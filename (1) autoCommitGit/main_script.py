@@ -1,7 +1,6 @@
 # main_script.py
 # from utils import initialize_driver, navigate_to_url, click_element
-from utils import open_browser, perform_login, ask_chat_gpt
-from click_copy import clickOnCopy
+from utils import open_browser, perform_login, ask_chat_gpt, clickOnCopy
 from idea_manager import IdeaManager
 from clipboard_extractor import ClipboardExtractor
 
