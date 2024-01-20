@@ -1,8 +1,9 @@
 # main_script.py
 # from utils import initialize_driver, navigate_to_url, click_element
 from utils import open_browser, perform_login, ask_chat_gpt
-from extract_answer import clickOnCopy
+from click_copy import clickOnCopy
 from idea_manager import IdeaManager
+from clipboard_extractor import ClipboardExtractor
 
 if __name__ == "__main__":
     # Benutzerdefinierter Dateipfad für IdeaManager
@@ -17,6 +18,7 @@ if __name__ == "__main__":
     perform_login()
     ask_chat_gpt(im)
     clickOnCopy()
+    ClipboardExtractor.extract_code_from_clipboard()
 
 
 # open ai in python 

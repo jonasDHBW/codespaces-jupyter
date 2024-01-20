@@ -10,6 +10,7 @@ def clickOnCopy():
     time.sleep(20)
     click_at_position(720, 843)
 
+
 # xpath = ""
 
 # def open_def_tool():
