@@ -1,33 +1,24 @@
-
 import os
 import subprocess
 
-def create_and_push_commit_file(repository_path, commit_file_path, commit_message):
+def create_and_push_commit_file(commit_file_path, commit_message):
     try:
-        # Erstelle eine neue Datei commit.py
-        with open(commit_file_path, 'w') as commit_file:
-            commit_file.write("# Hier kommt der Inhalt Ihrer commit.py-Datei")
+        # Verify if the file exists
+        if not os.path.isfile(commit_file_path):
+            print(f"Error: File '{commit_file_path}' not found.")
+            return
 
-        # Füge die Datei zum Index hinzu
-        subprocess.run(["git", "add", commit_file_path], cwd=repository_path, check=True)
+        # Add the file to the Git index
+        subprocess.run(["git", "add", commit_file_path], check=True)
 
-        # Commit mit der angegebenen Nachricht
-        subprocess.run(["git", "commit", "-m", commit_message], cwd=repository_path, check=True)
+        # Commit with the specified message
+        subprocess.run(["git", "commit", "-m", commit_message], check=True)
 
-        # Pushe die Änderungen zum Remote-Repository
-        subprocess.run(["git", "push"], cwd=repository_path, check=True)
+        # Push the changes to the remote repository
+        subprocess.run(["git", "push"], check=True)
 
-        print("Erfolgreich gepusht!")
+        print("Successfully pushed!")
     except subprocess.CalledProcessError as e:
-        print(f"Fehler beim Pushen: {e}")
+        print(f"Error while pushing: {e}")
 
-# Beispielaufruf
-repo_path = r"C:\Users\jpl\Codespace_Jypyter\codespaces-jupyter"
-commit_file_path = "commit.py"  # Stellen Sie sicher, dass der Pfad korrekt ist
-commit_message = "Neue Datei commit.py erstellt"
-
-# Verwenden Sie den vollständigen Pfad zur commit.py-Datei
-full_commit_file_path = os.path.join(repo_path, commit_file_path)
-
-create_and_push_commit_file(repo_path, full_commit_file_path, commit_message)
 

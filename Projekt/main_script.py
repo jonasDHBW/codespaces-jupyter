@@ -1,23 +1,26 @@
-# main_script.py
-# from utils import initialize_driver, navigate_to_url, click_element
-from utils import open_browser, perform_login, ask_chat_gpt, clickOnCopy
-from idea_manager import IdeaManager
-from clipboard_extractor import ClipboardExtractor
+import os
+import time
+
+from utils import *
+from idea_manager import *
+from clipboard_extractor import *
+from push_idea import *
 
 if __name__ == "__main__":
-    # Benutzerdefinierter Dateipfad für IdeaManager
-    custom_file_path = r"C:\Users\jpl\VS Code for Git\codespaces-jupyter\(1) autoCommitGit\ideas.txt"
+    idee = idee_ziehen()[:-2]
+    name = idee + ".py"
+
+    print(idee)
     
     url = 'https://chat.openai.com/auth/login'
     open_browser(url)
 
-    # Erstelle eine Instanz von IdeaManager mit benutzerdefiniertem Dateipfad
-    im = IdeaManager(file_path=custom_file_path)
-
-    perform_login()
-    ask_chat_gpt(im)
+    # perform_login()
+    time.sleep(5)
+    ask_chat_gpt(idee)
     clickOnCopy()
-    ClipboardExtractor.extract_code_from_clipboard()
-
-
-# open ai in python 
+    
+    # extract and push
+    extract_code_from_clipboard(name)
+    time.sleep(2)
+    create_and_push_commit_file(name,"new Programm")
