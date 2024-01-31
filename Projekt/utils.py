@@ -3,11 +3,28 @@ import pyautogui
 import webbrowser
 import time
 
+def getDimensions():
+        screenWidth, screenHeight = pyautogui.size()  # Get the size of the primary monitor.
+        return screenWidth, screenHeight
+
 def open_browser(url):
     webbrowser.open(url)
+    
+def close_browser():
+    pyautogui.press('ctrl' + 'w')
 
 def click_at_position(x, y, duration=0.5):
-    pyautogui.moveTo(x, y, duration=duration)
+
+    def calculatePercentage():
+        screenWidht, screenHeight= getDimensions()  # Call the getDimensions function to get screen dimensions
+        perW = x / screenWidht
+        perH = y / screenHeight
+        return perW, perH
+
+    screenWidht, screenHeight = getDimensions()
+    perW, perH = calculatePercentage()
+        
+    pyautogui.moveTo(screenWidht*perW, screenHeight*perH, duration=duration)  
     pyautogui.click()
 
 def click_right(x, y, duration=0.5):
