@@ -4,27 +4,44 @@ import webbrowser
 import time
 
 def getDimensions():
-        screenWidth, screenHeight = pyautogui.size()  # Get the size of the primary monitor.
-        return screenWidth, screenHeight
+    screenWidth, screenHeight = pyautogui.size()  
+    return screenWidth, screenHeight
 
 def open_browser(url):
     webbrowser.open(url)
     
 def close_browser():
     pyautogui.press('ctrl' + 'w')
+    
+def deleteChat():
+    pyautogui.click(245, 310)
+    pyautogui.click(320, 465)
+    pyautogui.click(1160, 650)
+
 
 def click_at_position(x, y, duration=0.5):
-
+    
+    # calculates the percentage of an 1920/1024 Screen
     def calculatePercentage():
-        screenWidht, screenHeight= getDimensions()  # Call the getDimensions function to get screen dimensions
+        screenWidht, screenHeight= getDimensions()  
         perW = x / screenWidht
         perH = y / screenHeight
         return perW, perH
 
+    # calculates in what relation the op screen an your screen stand
+    def calculateVariable():
+        screenWidht, screenHeight= getDimensions()
+        vX = screenWidht/1920
+        vY = screenHeight/1024
+        return vX, vY
+
+    # get stuff
     screenWidht, screenHeight = getDimensions()
     perW, perH = calculatePercentage()
-        
-    pyautogui.moveTo(screenWidht*perW, screenHeight*perH, duration=duration)  
+    vX, vY = calculateVariable()
+
+    # get the right button for everybody 
+    pyautogui.moveTo(screenWidht*perW*vX, screenHeight*perH*vY, duration=duration)  
     pyautogui.click()
 
 def click_right(x, y, duration=0.5):
@@ -62,11 +79,9 @@ def ask_chat_gpt(ideas):
         press_key("enter")
     else:
         print("No ideas available.")
-        
-def copy_discussion():
-    click_at_position()
     
 def clickOnCopy():
     time.sleep(20)
     click_at_position(720, 843)
     time.sleep(2)
+
