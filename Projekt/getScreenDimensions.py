@@ -1,18 +1,16 @@
 import pyautogui
 
-x = 721
-y = 842
-
 # Dimension of your Screen
 def getDimensions():
+    
     screenWidth, screenHeight = pyautogui.size()  
     return screenWidth, screenHeight
 
 # calculates the percentage of an 1920/1024 Screen
 def calculatePercentage():
     screenWidht, screenHeight= getDimensions()  
-    perW = x / screenWidht
-    perH = y / screenHeight
+    perW = x / 1920
+    perH = y / 1024
     return perW, perH
 
 # calculates in what relation the op screen an your screen stand
@@ -32,3 +30,4 @@ print(perW, perH)
 # get the right button for everybody 
 pyautogui.click(screenWidht*perW*vX, screenHeight*perH*vY)  
 print(screenWidht*perW, screenHeight*perH)
+print(pyautogui.position()) 

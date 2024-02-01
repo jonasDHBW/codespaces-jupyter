@@ -3,45 +3,39 @@ import pyautogui
 import webbrowser
 import time
 
-def getDimensions():
-    screenWidth, screenHeight = pyautogui.size()  
-    return screenWidth, screenHeight
+def get_screen_dimensions():
+    return pyautogui.size()
 
 def open_browser(url):
     webbrowser.open(url)
+    click_at_position(721, 842)
     
 def close_browser():
     pyautogui.press('ctrl' + 'w')
     
 def deleteChat():
-    pyautogui.click(245, 310)
-    pyautogui.click(320, 465)
-    pyautogui.click(1160, 650)
+    # y-Wert startet von Oben
+    click_at_position(245, 308)
+    click_at_position(340, 465)
+    click_at_position(1160, 650)
 
+def click_at_position(x, y, duration=2):
+    screen_width, screen_height = get_screen_dimensions()
 
-def click_at_position(x, y, duration=0.5):
+    # Calculate percentages
+    per_width = x / 1920
+    per_height = y / 1080
+
+    # Calculate screen dimension ratios
+    ratio_width = screen_width / 1920
+    ratio_height = screen_height / 1080
     
-    # calculates the percentage of an 1920/1024 Screen
-    def calculatePercentage():
-        screenWidht, screenHeight= getDimensions()  
-        perW = x / screenWidht
-        perH = y / screenHeight
-        return perW, perH
+    # Calculate the coords 
+    coord_X = screen_width * per_width * ratio_width
+    coords_Y = screen_height * per_height * ratio_height
 
-    # calculates in what relation the op screen an your screen stand
-    def calculateVariable():
-        screenWidht, screenHeight= getDimensions()
-        vX = screenWidht/1920
-        vY = screenHeight/1024
-        return vX, vY
-
-    # get stuff
-    screenWidht, screenHeight = getDimensions()
-    perW, perH = calculatePercentage()
-    vX, vY = calculateVariable()
-
-    # get the right button for everybody 
-    pyautogui.moveTo(screenWidht*perW*vX, screenHeight*perH*vY, duration=duration)  
+    # Move and click
+    pyautogui.moveTo(coord_X, coords_Y, duration=duration)
     pyautogui.click()
 
 def click_right(x, y, duration=0.5):

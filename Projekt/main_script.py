@@ -8,7 +8,8 @@ from push_idea import *
 
 if __name__ == "__main__":
     # Dimension abrufen
-    getDimensions()
+    get_screen_dimensions
+    ()
     
     # idee auswählen
     idee = idee_ziehen()[:-2]
