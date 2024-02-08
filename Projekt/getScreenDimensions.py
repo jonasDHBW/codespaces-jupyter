@@ -1,33 +1,36 @@
 import pyautogui
+import time
 
-# Dimension of your Screen
-def getDimensions():
-    
-    screenWidth, screenHeight = pyautogui.size()  
-    return screenWidth, screenHeight
+# Standard-Bildschirmauflösung
+standard_screen_width, standard_screen_height = 1920, 1080
 
-# calculates the percentage of an 1920/1024 Screen
-def calculatePercentage():
-    screenWidht, screenHeight= getDimensions()  
-    perW = x / 1920
-    perH = y / 1024
-    return perW, perH
+# Ermitteln Sie die aktuelle Bildschirmauflösung
+screen_width, screen_height = pyautogui.size()
 
-# calculates in what relation the op screen an your screen stand
-def calculateVariable():
-    screenWidht, screenHeight= getDimensions()
-    vX = screenWidht/1920
-    vY = screenHeight/1024
-    return vX, vY
+# Verhältnis zwischen der aktuellen Auflösung und der Standardauflösung berechnen
+width_ratio = screen_width / standard_screen_width
+height_ratio = screen_height / standard_screen_height
 
-# get stuff
-screenWidht, screenHeight = getDimensions()
-perW, perH = calculatePercentage()
-vX, vY = calculateVariable()
+# Warten Sie für 3 Sekunden, um sicherzustellen, dass der Bildschirm bereit ist
+time.sleep(3)
 
-print(perW, perH)
-    
-# get the right button for everybody 
-pyautogui.click(screenWidht*perW*vX, screenHeight*perH*vY)  
-print(screenWidht*perW, screenHeight*perH)
-print(pyautogui.position()) 
+# Suchen Sie nach dem Bild und erhalten Sie die BoundingBox
+
+
+
+# Überprüfen, ob das Bild gefunden wurde
+if start is not None:
+    # Extrahieren Sie die prozentualen x- und y-Werte aus der BoundingBox
+    button_percentage_x = (button_x / standard_screen_width) * 100
+    button_percentage_y = (button_y / standard_screen_height) * 100
+
+    # Berechnen Sie die tatsächlichen Bildschirmkoordinaten des Buttons unter Berücksichtigung des Verhältnisses
+    button_x_actual = int((button_percentage_x / 100) * screen_width)
+    button_y_actual = int((button_percentage_y / 100) * screen_height)
+
+    # Klicken Sie auf den Button
+    pyautogui.click(button_x_actual, button_y_actual)
+
+    print(f"Tatsächliche X-Wert: {button_x_actual}, Tatsächliche Y-Wert: {button_y_actual}")
+else:
+    print("Bild nicht gefunden.")

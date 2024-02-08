@@ -13,7 +13,7 @@ R = 350
 (X, Y) = pyautogui.position(x / 2, y / 2,)
 
 # Repeat the process 10 times
-for _ in range(10):
+for _ in range(5):
     for i in range(360):
         # setting pace with a modulus 
         if i % 6 == 0:
