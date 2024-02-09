@@ -1,6 +1,5 @@
 import random
 
-# Liste von Übungen mit realistischen Mindest- und Höchstwerten für Satzzahlen und Pausenzeit in Sekunden
 exercise_list = {
     "Kniebeugen": {},
     "Liegestütze": {},
@@ -45,10 +44,8 @@ def main():
     print("Willkommen beim Trainingsplan-Generator!")
     print("Hier ist dein zufälliger Trainingsplan für heute:")
 
-    # Generiere einen Trainingsplan mit 10 Übungen
     training_plan = generate_training_plan(exercise_list)
 
-    # Zeige den Trainingsplan an
     for index, exercise in enumerate(training_plan, start=1):
         print(f"{index}. {exercise}:")
         print(f"   Sätze: {exercise_list[exercise]['Sätze']}")
@@ -56,3 +53,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# idee: skippen, übungen einzeln
