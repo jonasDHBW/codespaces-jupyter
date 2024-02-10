@@ -79,3 +79,9 @@ def clickOnCopy():
     click_at_position(720, 843)
     time.sleep(2)
 
+def open_discord():
+    discord_icon = pyautogui.locateCenterOnScreen('discord_icon.png')  
+    if discord_icon:
+        pyautogui.click(discord_icon)
+    else:
+        print("Discord Icon nicht gefunden.")

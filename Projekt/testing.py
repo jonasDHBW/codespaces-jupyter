@@ -1,36 +1,17 @@
-import pyautogui
 import time
- 
-time.sleep(3)
+import pyautogui
 
-def findBell():
-    # Verzögerung vor der Suche nach dem ersten Bild
-    time.sleep(2)
-    
-    # Suche nach dem ersten Bild
-    dots_location = pyautogui.locateCenterOnScreen(r'Projekt\buttons\dotsDiscord.png')
-    
-    # Überprüfen, ob das Bild gefunden wurde
-    if dots_location:
-        # Bewegen Sie den Mauszeiger zu den Koordinaten und klicken Sie darauf
-        pyautogui.moveTo(dots_location)
-        pyautogui.click()
+def clickOnSortBy():
+    while True:
+        sortBy = pyautogui.locateCenterOnScreen(r'Projekt\buttons\sortByGIT.png')
         
-        # Verzögerung vor der Suche nach dem zweiten Bild
-        time.sleep(2)
-        
-        # Suche nach dem zweiten Bild
-        bell_location = pyautogui.locateCenterOnScreen(r'Projekt\buttons\bellDiscord.png')
-        
-        # Überprüfen, ob das zweite Bild gefunden wurde
-        if bell_location:
-            # Bewegen Sie den Mauszeiger zu den Koordinaten und klicken Sie darauf
-            pyautogui.moveTo(bell_location)
-            pyautogui.click()
+        if sortBy is not None:
+            pyautogui.moveTo(sortBy)
+            pyautogui.click
+            print("sortBy found!")
+            break  
         else:
-            print("Das Bild 'bellDiscord.png' wurde nicht gefunden.")
-    else:
-        print("Das Bild 'dotsDiscord.png' wurde nicht gefunden.")
-
-    
-findBell()
+            print("sortBy not found")
+            
+time.sleep(2)
+clickOnSortBy()
