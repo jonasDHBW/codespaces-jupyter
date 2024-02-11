@@ -2,16 +2,15 @@ import time
 import pyautogui
 
 def clickOnSortBy():
-    while True:
-        sortBy = pyautogui.locateCenterOnScreen(r'Projekt\buttons\sortByGIT.png')
+    copySymbol = pyautogui.locateCenterOnScreen(r'Projekt\buttons\copySymbolChat.png')
         
-        if sortBy is not None:
-            pyautogui.moveTo(sortBy)
-            pyautogui.click
-            print("sortBy found!")
-            break  
-        else:
-            print("sortBy not found")
+    if copySymbol is not None:
+        pyautogui.moveTo(copySymbol)
+        pyautogui.click()
+        print("copied the comment!")
+    else:
+        print("couldn't copy the comment")
+    print("ask Chat succesfully!")
             
 time.sleep(2)
 clickOnSortBy()

@@ -1,49 +1,30 @@
 import random
-import requests
+import pyperclip
 import webbrowser
 import pyautogui
 import time
 
 
-# functions for buttons
+# # functions for random website
 def clickOnSortBy():
-    while True:
-        sortBy = pyautogui.locateCenterOnScreen(r'Projekt\buttons\sortByGIT.png')
+    sortBy = pyautogui.locateCenterOnScreen(r'Projekt\buttons\sortByGIT.png')
         
-        if sortBy is not None:
-            pyautogui.moveTo(sortBy)
-            pyautogui.click()
-            print("sortBy found!")
-            break  
-        else:
-            print("sortBy not found")
+    if sortBy is not None:
+        pyautogui.moveTo(sortBy)
+        pyautogui.click()
+        print("sortBy found!")  
+    else:
+        print("sortBy not found")
             
 def clickOnPastWeek():
-    while True:
-        pastWeek = pyautogui.locateCenterOnScreen(r'Projekt\buttons\pastWeekGIT.png')
+    pastWeek = pyautogui.locateCenterOnScreen(r'Projekt\buttons\pastWeekGIT.png')
         
-        if pastWeek is not None:
-            pyautogui.moveTo(pastWeek)
-            pyautogui.click()
-            print("pastWeek found!")
-            break  
-        else:
-            print("pastWeek not found")
-            
-def clickOnChatSymbol():
-    while True:
-        chatSymbol = pyautogui.locateCenterOnScreen(r'Projekt\buttons\chatGIT.png')
-        
-        
-        #search for symbol 0 or 1
-        if chatSymbol is not None:
-            pyautogui.moveTo(chatSymbol)
-            pyautogui.click(+100, +20)
-            print("chatSymbol found!")
-            break  
-        else:
-            print("chatSymbol not found")
-
+    if pastWeek is not None:
+        pyautogui.moveTo(pastWeek)
+        pyautogui.click()
+        print("pastWeek found!")  
+    else:
+        print("pastWeek not found")    
 
 def load_urls_and_names(filename):
     urls_and_names = {}
@@ -58,14 +39,40 @@ def get_random_url_and_name(urls_and_names):
     return random_url, urls_and_names[random_url]
 
 def check_page_suitability():
-    receivedComments = pyautogui.locateCenterOnScreen(r'file')
-    if receivedComments == None:
+    chatSymbol_0 = pyautogui.locateCenterOnScreen(r'Projekt\buttons\chat0GIT.png')
+    chatSymbol_1 = pyautogui.locateCenterOnScreen(r'Projekt\buttons\chat1GIT.png')
+    
+    if chatSymbol_0 is not None and chatSymbol_1 is not None:
         return True
     else:
         return False
+    
+def clickChatSymbol():
+    chatSymbol = pyautogui.locateCenterOnScreen(r'Projekt\buttons\chatGIT.png')
+        
+    if chatSymbol is not None:
+        pyautogui.moveTo(chatSymbol)
+        x, y = chatSymbol
+        pyautogui.click(x + 50, y - 20)  
+        print("chatSymbol found!")
+    else:
+        print("chatSymbol not found")
+        
+def clickOnDots():
+    dots = pyautogui.locateCenterOnScreen(r'Projekt\buttons\discDotsGIT.png')    
+        
+    if dots is not None:
+        pyautogui.moveTo(dots)
+        pyautogui.click()
+        
+        print("discussion copied!")
+    else:
+        print("failed to copy discussion")
+
+# # acces random website
 
 def access_random_website():
-    filename = r'Projekt\urls.txt'  # Name der Textdatei mit den URLs und Namen
+    filename = r'Projekt\urls.txt' 
     urls_and_names = load_urls_and_names(filename)
     
     while urls_and_names:
@@ -78,12 +85,10 @@ def access_random_website():
             print("Website successfully opened in the default web browser.")
             
             #try to click the buttons to get to the discussions 
-            time.sleep(5)  # Waiting for the page to load, adjust this if needed
+            time.sleep(5)  
             clickOnSortBy()
             time.sleep(2)
             clickOnPastWeek()
-            time.sleep(2)
-            clickOnChatSymbol()
             
             # Decide whether the page is suitable or not
             if check_page_suitability():
@@ -91,14 +96,151 @@ def access_random_website():
                 break  
             else:
                 print("Two comments already exist")
+                
+                # close tab immediately
+                pyautogui.hotkey('ctrl', 'w')
+                
         except Exception as e:
             print("Error:", e)
         
         # Remove the failed link from the dictionary and try again
         del urls_and_names[random_url]
+        
     
     if not urls_and_names:
         print("No more valid links available.")
 
+# # copy Discussion
+def copyDiscussion():
+    
+    clickChatSymbol()
+    time.sleep(1)
+    
+    clickOnDots()
+       
+    time.sleep(1)  
+    reference = pyautogui.locateCenterOnScreen(r'Projekt\buttons\referenceGIT.png')    
+        
+    if reference is not None:
+        pyautogui.moveTo(reference)
+        pyautogui.click()
+        
+        # in the text field
+        time.sleep(2)
+        pyautogui.click()
+        pyautogui.hotkey('ctrl', 'a')
+        time.sleep(1)
+        pyautogui.hotkey('ctrl', 'c')
+        
+        #close field
+        closeField = pyautogui.locateCenterOnScreen(r'Projekt\buttons\closeFieldGIT.png')
+        
+        if closeField is not None:
+            pyautogui.moveTo(closeField)
+            pyautogui.click()
+            print("text field succesfully closed!")
+        
+        else:
+            print("text field could not be closed")
+        
+        print("copy text worked!")
+    else:
+        print("copy text failed")
+
+
+# #  get answer from Chat functions
+
+# switch to Chat
+def switchToChat():
+    chatIcon = pyautogui.locateCenterOnScreen(r'Projekt\buttons\chatIconWeb.png')
+        
+    if chatIcon is not None:
+        pyautogui.moveTo(chatIcon)
+        pyautogui.click()
+        print("moved to ChatGPT!")
+        
+    else:
+        print("move to ChatGPT unsuccesfull")
+
+# switch to Git        
+def switchToGit():
+    GITIcon = pyautogui.locateCenterOnScreen(r'Projekt\buttons\GITIconWeb.png')
+        
+    if GITIcon is not None:
+        pyautogui.moveTo(GITIcon)
+        pyautogui.click()
+        print("moved to GIT!")
+        
+    else:
+        print("move to GIT unsuccesfull")
+
+# copy output
+def copyOutput():
+    copySymbol = pyautogui.locateCenterOnScreen(r'Projekt\buttons\copySymbolChat.png')
+    
+    if copySymbol is not None:
+        pyautogui.moveTo(copySymbol)
+        pyautogui.click()
+        print("copied the comment!")
+    else:
+        print("couldn't copy the comment")
+        
+# click on quote reply
+def clickOnQuoteReply():
+    quote = pyautogui.locateCenterOnScreen(r'Projekt\buttons\quoteReplyGit.png')
+    
+    if quote is not None:
+        pyautogui.moveTo(quote)
+        pyautogui.click()
+        print("click on Quote Reply succesfull!")
+    else:
+        print("click on Quote Reply unsuccesfull")
+    
+# ask chat for feedback
+def askChatForComment():
+    promtLine = pyautogui.locateCenterOnScreen(r'Projekt\buttons\promtLineChat.png')
+
+    if promtLine is not None:
+        # type the discussion in chat
+        pyautogui.moveTo(promtLine)
+        x, y = promtLine
+        pyautogui.click(x-200, y)
+        pyautogui.typewrite("Write a short and positive Feedback to the following description: ")
+        pyautogui.hotkey('shift', 'enter')
+        pyautogui.hotkey('shift', 'enter')
+        pyautogui.hotkey('ctrl', 'v')
+        pyautogui.hotkey('enter')
+        
+        # copy the comment
+        time.sleep(10)
+        copyOutput()
+        print("ask Chat succesfully!")
+        
+    else:
+        print("can't ask Chat")
+
+        
+# # write the comment
+def writeGitComment():
+    
+    # switchToGit()
+    clickOnDots()
+    clickOnQuoteReply()
+    
+    pyautogui.hotkey('ctrl', 'a')
+    pyautogui.hotkey('ctrl', 'v')
+    pyautogui.hotkey('enter')    
+    
+# close the two tabs
+def closeTheTabs():
+    pyautogui.hotkey('ctrl', 'w')
+    switchToChat()
+    # close ChatGPT Chat
+    pyautogui.hotkey('ctrl', 'w')
+
 if __name__ == "__main__":
-    access_random_website()
+    # access_random_website()
+    time.sleep(2)
+    writeGitComment()
+    
+    
